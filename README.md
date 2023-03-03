@@ -7,6 +7,14 @@
 
 <br>
 
+
+### TODO
+--https://www.mysqltutorial.org/mysql-triggers/mysql-drop-trigger/
+--following syntax from here
+
+create another table FOR EMPLOYEES AUDIT that needs a outside signiture which will be allow ROOT user an update one time (then complete the request ONE time
+
+
 ### TESTING
 
 The database was tested using the following classes and requirements:
