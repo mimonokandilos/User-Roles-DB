@@ -7,29 +7,27 @@ CREATE TABLE FIETO.USERS (
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
-    changedat DATETIME DEFAULT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     role ENUM('general', 'moderator', 'admin') NOT NULL DEFAULT 'general'
 );
 
-CREATE TABLE FIETO.EMPLOYEES_AUDIT (
-    id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    employeeNumber INT NOT NULL,
-    lastname VARCHAR(50) NOT NULL,
-    changedat DATETIME DEFAULT NULL,
-    action VARCHAR(50) DEFAULT NULL,
-    ADMIN_APPROVED INT DEFAULT NOT NULL,
+
+CREATE TABLE FIETO.AUDIT_HISTORY (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  action VARCHAR(255),
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
---Code language: SQL (Structured Query Language) (sql)
-
-
---Create table to have audit informations
-CREATE TABLE FIETO.AUDIT_HISTORY ()
-
---test data quick insert for each role
 INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user1', 'user1@example.com', 'password1', 'general');
 INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user2', 'user2@example.com', 'password2', 'moderator');
 INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user3', 'user3@example.com', 'password3', 'admin');
+
+
+use FIETO;
+SELECT * FROM USERS;
+SHOW TRIGGERS;
+--Code language: SQL (Structured Query Language) (sql)
 
 ------------------------------------
 ------STOP HERE---------------------
@@ -38,10 +36,6 @@ INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user3', 'user
 --IF YES, Begin Testing Sequenc
 ------------------------------------
 
----
-use FIETO;
-SELECT * FROM USERS;
-SHOW TRIGGERS;
 -- mysql> select * from users;
 -- +----+----------+-------------------+-----------+-----------+
 -- | id | username | email             | password  | role      |
@@ -52,12 +46,23 @@ SHOW TRIGGERS;
 -- +----+----------+-------------------+-----------+-----------+
 -- 3 rows in set (0.00 sec)
 
---
-SHOW TRIGGERS;
 --whout password WORKING
 INSERT INTO USERS (username, email, password, role) VALUES ('user4', 'user4@example.com', '', 'general');
+INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('useradminFail', 'useraF@example.com', 'password3', 'admin');
 ---ERROR 1644 (45000): User must have a password
 
+
+
+---testing trigger to make sure every user inserted/updated is insertted to the audit history table
+---ENABLE TIGGER FIRST
+INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('test24', 'user141@example.com', 'password1', 'general');
+INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user25', 'user23@example.com', 'password2', 'moderator');
+INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user36', 'user32@example.com', 'password3', 'admin');
+
+
+INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('test244', 'user1441@example.com', 'password1', 'general');
+INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user225', 'user223@example.com', 'password2', 'moderator');
+INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user356', 'user312@example.com', 'password3', 'admin');
 
 ------------------------------------
 -------TESTING CONSTRAINT: Admin
@@ -65,12 +70,11 @@ INSERT INTO USERS (username, email, password, role) VALUES ('user4', 'user4@exam
 --TASK: admin = 
 -- should FAIL
 -- should FAIL
--- should SUCCEED
+-- should FAIL --WORKING
 UPDATE USERS SET role = 'admin' WHERE id = 1; 
 UPDATE USERS SET role = 'admin' WHERE id = 2; 
-
---NOTWORKING
 UPDATE USERS SET role = 'admin' WHERE id = 3; 
+INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('useradminFail', 'useraF@example.com', 'password3', 'admin');
 
 
 ------------------------------------

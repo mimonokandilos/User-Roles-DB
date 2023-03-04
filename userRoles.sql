@@ -14,41 +14,77 @@ BEGIN
 END $$
 DELIMITER ;
 
-CREATE TRIGGER user_password_check BEFORE INSERT ON USERS
+
+
+--USER ADD or UPDATE IS NOW GOINg to trigger a audit history table
+DELIMITER $$
+CREATE TRIGGER audit_user_update AFTER UPDATE ON users
 FOR EACH ROW
 BEGIN
-    IF NEW.password = '' OR NEW.password IS NULL THEN
-        SIGNAL SQLSTATE '45000' 
-            SET MESSAGE_TEXT = 'User must have a password';
-    END IF;
-END 
+    INSERT INTO audit_history (user_id, action)
+    VALUES (OLD.id, CONCAT('Updated user with ID ', OLD.id));
+END $$
+DELIMITER ;
 
 
 
---NOT SURE ABOUT SYNTAX
--- Create a trigger that ensures only admin USERS can be updated to an admin role
--- WORKINNG
+DELIMITER $$
+CREATE TRIGGER audit_user_insert AFTER INSERT ON users
+FOR EACH ROW
+BEGIN
+    INSERT INTO audit_history (user_id, action)
+    VALUES (NEW.id, CONCAT('Updated user with ID ', NEW.id));
+END $$
+DELIMITER ;
+
+-- WORKINNG BOTH TRIGGERS
+-- Create a trigger that doesnt allow any role to be updated to admin
+
+
 DELIMITER $$
 CREATE TRIGGER admin_role_check BEFORE UPDATE ON users
 FOR EACH ROW
 BEGIN
-    IF NEW.role = 'admin' AND OLD.role != 'admin' AND NEW.role != OLD.role AND OLD.role != '' THEN
+    IF NEW.role = 'admin' OR  NEW.role != OLD.role OR OLD.role != '' THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Only admin users can be assigned to the admin role';
     END IF;
 END $$
 DELIMITER ;
 
-
 DELIMITER $$
-CREATE TRIGGER admin_role_check BEFORE UPDATE ON USERS
+CREATE TRIGGER prevent_admin_accounts BEFORE INSERT ON users
 FOR EACH ROW
 BEGIN
-    IF NEW.role = 'admin' AND OLD.role != 'admin' AND NEW.role != OLD.role AND OLD.role != '' THEN
-        SIGNAL SQLSTATE '45000' 
-            SET MESSAGE_TEXT = 'Only admin USERS can be assigned to the admin role';
+    IF NEW.role = 'admin' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Creating an admin account is not allowed';
     END IF;
 END $$
 DELIMITER ;
+
+
+--- TRIGGER that creates an update to an audit_history table
+---trigger to update the audit history on an insert
+DELIMITER $$
+CREATE TRIGGER audit_user_update AFTER UPDATE ON users
+FOR EACH ROW
+BEGIN
+    INSERT INTO audit_history (user_id, action)
+    VALUES (OLD.id, CONCAT('Updated user with ID ', OLD.id));
+END $$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE TRIGGER audit_user_insert AFTER INSERT ON users
+FOR EACH ROW
+BEGIN
+    INSERT INTO audit_history (user_id, action)
+    VALUES (NEW.id, CONCAT('Updated user with ID ', NEW.id));
+END $$
+DELIMITER ;
+
+
 
 -- Create a trigger table=USERS, that ensures moderator USERS can only be created moderator or general role
 --Create a trigger that ensures moderator USERS can only be updated to a  moderator or general role only if approved by admin
