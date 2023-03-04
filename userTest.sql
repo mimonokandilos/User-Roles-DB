@@ -16,7 +16,8 @@ CREATE TABLE FIETO.EMPLOYEES_AUDIT (
     employeeNumber INT NOT NULL,
     lastname VARCHAR(50) NOT NULL,
     changedat DATETIME DEFAULT NULL,
-    action VARCHAR(50) DEFAULT NULL
+    action VARCHAR(50) DEFAULT NULL,
+    ADMIN_APPROVED INT DEFAULT NOT NULL,
 );
 
 --Code language: SQL (Structured Query Language) (sql)
@@ -67,6 +68,8 @@ INSERT INTO USERS (username, email, password, role) VALUES ('user4', 'user4@exam
 -- should SUCCEED
 UPDATE USERS SET role = 'admin' WHERE id = 1; 
 UPDATE USERS SET role = 'admin' WHERE id = 2; 
+
+--NOTWORKING
 UPDATE USERS SET role = 'admin' WHERE id = 3; 
 
 
