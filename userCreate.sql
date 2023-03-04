@@ -1,4 +1,5 @@
 -- Create DB, TABLES to store user information
+--might need append audit history with user created /updated
 DROP DATABASE FIETO; CREATE DATABASE IF NOT EXISTS FIETO;
 
 CREATE TABLE FIETO.USERS (
@@ -9,7 +10,6 @@ CREATE TABLE FIETO.USERS (
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     role ENUM('general', 'moderator', 'admin') NOT NULL DEFAULT 'general'
 );
-
 
 CREATE TABLE FIETO.AUDIT_HISTORY (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
