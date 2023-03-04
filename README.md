@@ -5,6 +5,28 @@
 ### DESCRIPTION
 - This is a database implementation of a security group with user roles
 
+
+
+
+
+
+
+###MYSQL  SERVER INSTALLATION
+
+for Mac
+- brew install mysql
+- mysql_sercure_installation
+   - set root password, plus securly install mysql
+
+Check Mysql status
+- mysql.server status
+
+Restart mysql
+- mysql.server restart
+
+Start myql
+- mysql.server start
+
 <br>
 
 
