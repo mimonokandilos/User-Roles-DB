@@ -20,15 +20,14 @@
 
 --whout password WORKING
 INSERT INTO USERS (username, email, password, role) VALUES ('user4', 'user4@example.com', '', 'general');
-INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('useradminFail', 'useraF@example.com', 'password3', 'admin');
 ---ERROR 1644 (45000): User must have a password
 
 
 
 ---testing trigger to make sure every user inserted/updated is insertted to the audit history table
 ---ENABLE TIGGER FIRST
--- AUDIT HISTORY CREATE WORKS
-
+-- AUDIT HISTORY CREATE WORKS, ADMIN DISALLOW CREATE TRIGGER WORKS
+INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('userpublic', 'userPublic@example.com', 'password3', 'public');
 INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('test24', 'user141@example.com', 'password1', 'general');
 INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user25', 'user23@example.com', 'password2', 'moderator');
 INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user36', 'user32@example.com', 'password3', 'admin');
@@ -36,12 +35,13 @@ INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user36', 'use
 
 
 -- EXTRA AUDIT HISTORY TESTS NEED TO TEST AUDIT HISTORY UPDATE
+INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('userpublic', 'userPublic@example.com', 'password3', 'public');
 INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('test244', 'user1441@example.com', 'password1', 'general');
 INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user225', 'user223@example.com', 'password2', 'moderator');
 INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('user356', 'user312@example.com', 'password3', 'admin');
 
 ------------------------------------
--------TESTING CONSTRAINT: Admin
+-------TESTING CONSTRAINT: ADMIN UPDATE TRIGGER /CREATE TEST AGAIN
 ------------------------------------
 --TASK: admin = 
 -- should FAIL

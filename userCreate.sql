@@ -8,7 +8,7 @@ CREATE TABLE FIETO.USERS (
     email VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    role ENUM('public','general', 'moderator', 'admin') NOT NULL DEFAULT 'public'
+    role ENUM('public', 'general', 'moderator', 'admin') NOT NULL DEFAULT 'public'
 );
 
 CREATE TABLE FIETO.AUDIT_HISTORY (
@@ -23,7 +23,7 @@ CREATE TABLE FIETO.PEMISSION_HISTORY (
   user_id INT NOT NULL,
   action VARCHAR(255),
   timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  admin_consent BOOLEAN NOT NULL DEFAULT 0
+  admin_consent TINYINT(1) NOT NULL DEFAULT 0
 );
 
 INSERT INTO FIETO.USERS (username, email, password, role) VALUES ('userpublic', 'userPublic@example.com', 'password3', 'public');
