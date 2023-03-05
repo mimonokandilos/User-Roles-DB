@@ -64,16 +64,16 @@ END $$
 DELIMITER ;
 
 
---- TRIGGER that creates an update to an audit_history table
----trigger to update the audit history on an insert
-
-
 -- Create a trigger table=USERS, that ensures moderator USERS can only be created moderator or general role
 --Create a trigger that ensures moderator USERS can only be updated to a  moderator or general role only if approved by admin
 --notWORKINNG
 -- MODERATOR
----needs a clause about 
---not working
+
+--CREATE
+--moderatros --> admin : fail works
+--moderatros --> moderators : fail  not working
+--moderatros --> general : fail 
+--moderator --> public
 DELIMITER $$
 CREATE TRIGGER moderator_role_check BEFORE UPDATE ON USERS
 FOR EACH ROW
@@ -94,6 +94,8 @@ BEGIN
 END $$
 DELIMITER ;
 
+
+--
 DELIMITER $$
 CREATE TRIGGER moderator_role_check BEFORE UPDATE ON users
 FOR EACH ROW
@@ -110,27 +112,3 @@ DELIMITER ;
 
 -- Create a trigger that ensures general USERS can only be updated to a general role
 --notWORKINNG
-DELIMITER $$
-CREATE TRIGGER general_role_check BEFORE UPDATE ON USERS
-FOR EACH ROW
-BEGIN
-    IF NEW.role = 'general' AND OLD.role != 'admin' AND NEW.role != OLD.role AND OLD.role != 'moderator' AND OLD.role != '' THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'General USERS can only be assigned to the general role';
-    END IF;
-END $$
-DELIMITER ;
-
-
--- Create a trigger table=USERS, that ensures moderator USERS can only be created moderator or general role
--- Create a trigger that ensures moderator USERS can only be updated to a  moderator or general role only if approved by admin
---notWORKINNG
-
--- CREATE TRIGGER moderator_role_update_trigger
--- BEFORE UPDATE ON users
--- FOR EACH ROW
--- BEGIN
---   IF NEW.role IN ('admin', 'general') AND OLD.role = 'moderator' AND NEW.approved_by_admin = 0 THEN
---     SIGNAL SQLSTATE '45000' 
---     SET MESSAGE_TEXT = 'Cannot update moderator role without admin approval';
---   END IF;
--- END;

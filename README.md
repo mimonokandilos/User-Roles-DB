@@ -11,7 +11,7 @@
 
 
 
-###MYSQL  SERVER INSTALLATION
+### MYSQL  SERVER INSTALLATION
 
 for Mac
 - brew install mysql
