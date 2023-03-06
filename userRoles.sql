@@ -37,6 +37,8 @@ BEGIN
     VALUES (NEW.id, CONCAT('Updated user with ID ', NEW.id));
 END $$
 DELIMITER ;
+--we need a delete audit history trigger combine all thruee of theses triggers possibly
+
 
 --ADMIN ROLE CHECK
 -- WORKINNG BOTH TRIGGERS
