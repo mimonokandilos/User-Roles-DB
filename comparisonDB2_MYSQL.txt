@@ -1,0 +1,93 @@
+MySQL vs IBM DB2: Platform Support
+
+REFERENCE: https://hevodata.com/learn/mysql-vs-ibm-db2/
+
+
+MySQL runs on Microsoft Windows, Linux, Mac OS, OpenBSD, HP-UX, AIX, IBM I, OpenSolaris, Symbian, Oracle Solaris, FreeBSD, ArcaOS, and IRIX, among other platforms. It is compatible with practically all common operating systems.
+IBM DB2 database application development is also possible on a variety of operating systems and architectures.
+The following operating systems are supported by DB2 database applications:
+AIX®
+Linux®
+Windows
+Mac OS X 
+HP UX
+MySQL vs IBM DB2: Programming Language Support
+MySQL is compatible with a variety of programming languages like PHP, C, C++, Java, and so on. It was built using a multi-layered server design to enable multithreaded kernels and multiple CPUs. TCL, Perl Scheme, and Haskel are among the additional languages supported. This characteristic is what makes it so popular among programmers.
+IBM DB2 database applications may also be written in several languages: C++, C#, VB.NET, and many more.
+
+
+MySQL vs IBM DB2: Features
+First and foremost, MySQL is an Oracle-backed open-source and publicly accessible database system. It is simple to use and provides the user with both a GUI (MySQL Workbench) and a command-line interface (mysqladmin). MySQL may be spread via the Internet, allowing users to view and modify data from any location at any time. MySQL secures its connections with encryption technologies.
+MySQL is quicker, more reliable, and less expensive simply due to its efficient architecture. Its server provides faster results than other databases without sacrificing the software’s core capabilities.
+MySQL effectively saves data in the database, ensuring that it does not include duplicate information. MySQL is based on an engine that is well-suited to OLTP and excels at optimizing the number of transactions per second in your database.
+The IBM DB2 Database on IBM Cloud Pak® for Data combines a tried-and-tested, AI-infused, enterprise-ready Data Management System with an integrated data and AI platform built on the secure, scalable Red Hat® OpenShift® foundation. Machine Learning incorporated into query processing can be used to get insights, and reduce expenses by eliminating the requirement for Data Duplication and Migration with multimodal capabilities. Further, by using DB2 on any Cloud vendor, you may increase agility.
+
+MySQL vs IBM DB2: Scalability 
+MySQL Enterprise Edition includes the MySQL Thread Pool to provide consistent performance and scalability as a user, query, and data loads grow. The Thread Pool is a highly scalable thread-handling model that helps you manage client connections and statement execution threads more efficiently.
+While threading improves scalability, MySQL still lacks genuine scaling, particularly when working with Big Data.
+Vertical Scalability is a strength of IBM DB2, which is also a weakness of open-source RDBMS like MySQL. Even commercial databases like IBM DB2, on the other hand, struggle a little with Horizontal Scalability. Scalability is achievable, however, intricate setups including masters, slaves, replication, failover servers, and other factors necessitate a significant amount of effort.
+IBM has just released pureScale, a new solution for DB2 that accomplishes three impressive feats:
+
+Horizontal Scalability: Add extra nodes to the cluster to virtually increase capacity.
+Application Transparency: No modifications to the code are required.
+Constant Data Availability: Regardless of whichever server breaks, the system will continue to function, although at a lower throughput.
+What Makes Hevo’s Data Integration Process Unique
+Integrating and Loading data can be a mammoth task without the right set of tools. Hevo’s Automated Platform empowers you with everything you need to have a smooth Data Collection, Processing, and Aggregation experience. Our platform has the following in store for you!
+
+Exceptional Security: A Fault-tolerant Architecture that ensures Zero Data Loss.
+Built to Scale: Exceptional Horizontal Scalability with Minimal Latency for Modern-data Needs.
+Built-in Connectors: Support for 100+ Data Sources, including Databases such as MySQL, IBM DB2, SaaS Platforms, Files & More. Native Webhooks & REST API Connector available for Custom Sources.
+Incremental Data Load: Hevo allows the transfer of data that has been modified in real-time. This ensures efficient utilization of bandwidth on both ends.
+Blazing-fast Setup: Straightforward interface for new customers to work on, with minimal setup time.
+Live Support: The Hevo team is available round the clock to extend exceptional support to its customers through chat, email, and support calls.
+
+
+MySQL vs IBM DB2: Security Features 
+While important corporate capabilities, such as Transparent Column or Table Encryption, are lacking from MySQL, it still has a robust set of security protections that should be suitable in virtually all cases. For anybody with more stringent security requirements, the ability to design and deploy bespoke authentication and audit plug-ins may be a valuable advantage.
+IBM DB2’s security is defined by a security plan, executed via privilege and authority management, and fortified by auditing protected data access. A security strategy identifies your organization’s security goals and the policies and practices that will be used to achieve them. Security auditing allows you to evaluate and assess the sufficiency and efficacy of the policies and processes you’ve implemented to protect your data.
+IBM DB2 uses authorization identifiers (IDs) and roles, as well as the rights that are allocated to them, to manage access to its objects and data. You may perform specified actions on an item using each privilege and its associated authority.
+To secure your sensitive data, you can utilize the DB2 Secure Socket Layer (SSL) support or built-in Data Encryption mechanisms. You may also safeguard your datasets with RACF® or a comparable system.
+
+MySQL vs IBM DB2: Pricing
+MySQL is available in a variety of commercial versions to satisfy your technical and business requirements, as shown below:
+Cluster Carrier Grade Edition costs $10,000 to $30,000 (1-4 socket server)
+Cluster Carrier Grade Edition costs $20,000 to $60,000 (5+ socket server)
+Enterprise edition costs $5,000 to $15,000 (1-4 socket server)
+Enterprise edition costs $10,000 to $30,000 (5+ socket server)
+Standard edition costs $2000 to $6000 (1-4 socket server)
+Standard edition costs $4,000 to $12,000 (5+ socket server)
+Price Chart MySQL, MySQL vs IBM DB2 | Hevo Data
+Image Source
+
+IBM DB2 is available in several versions, including Lite, Standard, and Enterprise.
+Lite version is free
+Standard version costs $99/month
+Enterprise version costs $946/month
+Price Chart IBM DB2, MySQL vs IBM DB2 | Hevo Data
+Image Source
+Key Challenges of Working with MySQL
+When compared to commercial databases, MySQL’s development and debugging tools are lacking. COMMIT, stored procedures, and ROLE are not supported in MySQL versions below 5.0. MySQL is prone to data corruption due to its poor transaction management. SQL check restrictions are also not supported by MySQL.
+
+Key Challenges of Working with IBM DB2
+The usage of DB2 causes the product’s GUI to slow down over time. Performance time for the Big Board report, topology report, View Component Events window, and other aspects of the GUI may decline as data is added to the database. Stale index statistics, which can arise when a high volume of data is added to tables, create these performance issues.
+
+MySQL	
+IBM DB2
+	
+IBM DB2 database application development is also possible on a variety of operating systems such as Mac OS, AIX, Linux etc.
+IBM has Machine Learning incorporated in query processing that can be used to get insights & reduce expenses by eliminating the requirement for data duplication.
+Vertical Scalability is a strength of IBM DB2. It does struggle with horizontal scalability though it can be achieved using intricate setups that require significant effort.
+DB2 database applications may also be written in the several languages: C++, C#, VB.NET, and many more.
+DB2 uses authorization identifiers (IDs), roles, & the rights that are allocated to them, to manage access to its objects and data. To secure sensitive data, DB2 has built-in Data Encryption mechanisms.
+IBM DB2 also offers multiple plans starting with a free model to the enterprise on costing $946/month.
+
+MySQL runs on Microsoft Windows, Linux, Mac OS, OpenBSD, HP-UX etc.	
+MySQL ensures that it does not include duplicate information. MySQL is based on an engine that is well-suited to OLTP and optimizing the rate of transactions in your database.
+MySQL offers threading which improves scalability but it still lacks the true scalability when dealing with big data.	
+MySQL is compatible with a variety of programming languages like PHP, C, Java, and many more. TCL, Perl Scheme, and others are the additional languages supported.
+MySQL has a robust set of security protections that should be suitable in virtually all cases. In case of stringent security requirements, the user can design and deploy bespoke authentication.	
+MySQL offers various plans ranging from $2,000 to $60,000 based on the number of socket servers.	
+
+
+​​This article compared and contrasted the two most popular database technologies available today: MySQL and IBM DB2. It discussed both databases and the criteria for determining which one is best for your organization. It also presented some difficulties on both databases. 
+If you want to effortlessly integrate data from or into your target database/destination such as MySQL & IBM DB2 and view it in a BI tool of your choice, Hevo Data is the correct solution for you! Hevo Data, a No-code Data Pipeline helps to load data from any data source into destinations like Databases, SaaS applications, Cloud Storage, BI Tools, SDK’s, and Streaming Services and simplifies the ETL process. It supports 100+ data sources (and 40+ Free Data Sources) including MySQL and IBM DB2 and is a 3-step process by just selecting the data source, providing valid credentials, and choosing the destination.
