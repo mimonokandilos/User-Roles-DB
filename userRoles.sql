@@ -74,13 +74,25 @@ DELIMITER ;
 --CREATE
 --moderatros --> admin : fail works
 --moderatros --> moderators : fail  not working
---moderatros --> general : succeed  not works
+--moderatros --> general : succeed  not works 
 --moderator --> public : succeed not works
 --UPDATE
 --moderatros --> admin : fail works
 --moderatros --> moderators : fail  not working
 --moderatros --> general -> public 
 --moderator --> public -> general
+
+
+--CREATE TRIGGER moderator_role_insert_check  moderator
+  --  check if Pemissionhistory table contains record of that user_id and action that is tyrying to bve inserted
+    --    if entry is found check if there is admin consent granted in the columnadmin consent is ganted in the CREATE TABLE FIETO.PEMISSIions(admin_consent
+      --      if 1 then allow INSERT
+        --    if 0 then 
+          --      insert into the permissions history table
+       -- else 
+         --   throw sql error you need admin consent
+   -- else
+       -- insert into the permissions history table
 
 
 DELIMITER $$
