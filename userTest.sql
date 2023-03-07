@@ -65,6 +65,28 @@ UPDATE USERS SET role = 'moderator' WHERE id = 1;
 UPDATE USERS SET role = 'moderator' WHERE id = 2; 
 UPDATE USERS SET role = 'moderator' WHERE id = 3; 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ------------------------------------
 -------TESTING CONSTRAINT: General
 ------------------------------------

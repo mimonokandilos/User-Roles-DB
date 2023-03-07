@@ -94,6 +94,40 @@ DELIMITER ;
    -- else
        -- insert into the permissions history table
 
+-- Create a trigger that ensures general USERS can only be updated to a general role
+--notWORKINNG
+-- need to throw an if statment or catch error if first select stateme nt throws an error
+DELIMITER $$
+CREATE TRIGGER moderator_role_insert_check BEFORE INSERT ON users
+FOR EACH ROW
+BEGIN
+    DECLARE permission_count INT;
+    SELECT COUNT(*) INTO permission_count FROM permission_history WHERE user_id = NEW.id AND action = 'create_general';
+    IF permission_count > 0 THEN
+        IF NEW.role = 'moderator' THEN
+            SELECT admin_consent INTO @admin_consent FROM permission_history WHERE user_id = NEW.id AND action = 'create_general' LIMIT 1;
+            IF @admin_consent = 1 THEN
+                -- Allow insert
+            ELSE
+                INSERT INTO permission_history (user_id, action) VALUES (NEW.id, 'create_general');
+                SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Moderator users can only create accounts with moderator or general role with admin consent';
+            END IF;
+        ELSE
+            -- Allow insert
+        END IF;
+    ELSE
+        INSERT INTO permission_history (user_id, action) VALUES (NEW.id, 'create_general');
+    END IF;
+END $$
+DELIMITER ;
+
+
+
+
+--REST IS LEGACY TESTING STUFF
+
+
+
 
 DELIMITER $$
 CREATE TRIGGER moderator_role_insert_check BEFORE INSERT ON USERS

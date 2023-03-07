@@ -1,13 +1,11 @@
-### Mike Monokandilos
+### Mike Monokandilos, Kimon Monokandilos
 #
-# Class Scheduling Database
+# User Scheduling Database
 
 ### DESCRIPTION
-- This is a database implementation of a security group with user roles
+- This is a database implementation of a security group with user roles (public, general, moderator, admin)
 
-
-
-### MYSQL  SERVER INSTALLATION
+### MYSQL SERVER INSTALLATION
 
 # for Ubunntu/fedora/
 - dnf install mysql
