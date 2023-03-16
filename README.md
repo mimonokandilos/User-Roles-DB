@@ -1,4 +1,4 @@
-### Mike Monokandilos, Kimon Monokandilos
+### Mike Monokandilos
 #
 # User Scheduling Database
 
