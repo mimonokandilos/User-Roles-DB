@@ -255,13 +255,10 @@ BEGIN
         IF NEW.role = 'moderator' THEN
             SELECT admin_consent INTO @admin_consent FROM permission_history WHERE user_id = NEW.id AND action = 'create_general' LIMIT 1;
             IF @admin_consent = 1 THEN
-                -- Allow insert
-            ELSE
-                INSERT INTO permission_history (user_id, action) VALUES (NEW.id, 'create_general');
+            ELSE INSERT INTO permission_history (user_id, action) VALUES (NEW.id, 'create_general');
                 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Moderator users can only create accounts with moderator or general role with admin consent';
             END IF;
         ELSE
-            -- Allow insert
         END IF;
     ELSE
         INSERT INTO permission_history (user_id, action) VALUES (NEW.id, 'create_general');
